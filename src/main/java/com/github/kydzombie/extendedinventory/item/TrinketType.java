@@ -5,5 +5,7 @@ public enum TrinketType {
     NECKLACE,
     GLOVE,
     RING,
-    BELT
+    BELT,
+    CHARM,
+    MISC
 }
