@@ -1,6 +1,5 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
-import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.container.slot.Slot;
 import net.minecraft.entity.player.PlayerBase;
@@ -21,10 +20,10 @@ public class ContainerTrinkets extends ContainerBase {
         TrinketInventory trinketInventory = ((TrinketPlayerHandler) ((PlayerHandlerContainer) player).getPlayerHandlers().stream().filter(item -> item instanceof TrinketPlayerHandler).toArray()[0]).inventory;
 
         // Trinket Inventory
-        addSlot(new TrinketSlot(trinketInventory, TrinketType.NECKLACE, 0, 80, 8));
-        addSlot(new TrinketSlot(trinketInventory, TrinketType.RING, 1, 80, 8 + 18));
-        addSlot(new TrinketSlot(trinketInventory, TrinketType.RING, 2, 80, 8 + 18 + 18));
-        addSlot(new TrinketSlot(trinketInventory, TrinketType.BELT, 3, 80, 8 + 18 + 18 + 18));
+        addSlot(new TrinketSlot(trinketInventory, 0, 80, 8));
+        addSlot(new TrinketSlot(trinketInventory, 1, 80, 8 + 18));
+        addSlot(new TrinketSlot(trinketInventory, 2, 80, 8 + 18 + 18));
+        addSlot(new TrinketSlot(trinketInventory, 3, 80, 8 + 18 + 18 + 18));
     }
     @Override
     public boolean canUse(PlayerBase arg) {

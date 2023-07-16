@@ -1,25 +1,36 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.item.Trinket;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;
 
 public class TrinketInventory implements InventoryBase {
     private final ItemInstance[] inventory = new ItemInstance[4];
+
+    // TODO config for these
+    private static final TrinketType[] ACCEPTED_TYPES = new TrinketType[] {
+            TrinketType.NECKLACE,
+            TrinketType.RING,
+            TrinketType.RING,
+            TrinketType.BELT
+    };
+
     @Override
     public int getInventorySize() {
         return 4;
     }
 
     @Override
-    public ItemInstance getInventoryItem(int i) {
-        return inventory[i];
+    public ItemInstance getInventoryItem(int slot) {
+        return inventory[slot];
     }
 
-    public ItemInstance takeInventoryItem(int i, int j) {
-        if (inventory[i] != null) {
-            ItemInstance item = inventory[i];
-            inventory[i] = null;
+    public ItemInstance takeInventoryItem(int slot, int count) {
+        if (inventory[slot] != null) {
+            ItemInstance item = inventory[slot];
+            inventory[slot] = null;
             return item;
         } else {
             return null;
@@ -27,8 +38,8 @@ public class TrinketInventory implements InventoryBase {
     }
 
     @Override
-    public void setInventoryItem(int i, ItemInstance itemInstance) {
-        inventory[i] = itemInstance;
+    public void setInventoryItem(int slot, ItemInstance itemInstance) {
+        inventory[slot] = itemInstance;
     }
 
     @Override
@@ -49,5 +60,31 @@ public class TrinketInventory implements InventoryBase {
     @Override
     public boolean canPlayerUse(PlayerBase arg) {
         return true;
+    }
+
+    public TrinketType getAcceptedType(int slot) {
+        return ACCEPTED_TYPES[slot];
+    }
+
+    public boolean attemptInsert(ItemInstance item) {
+        if (item == null) return false;
+        if (item.getType() instanceof Trinket trinket) {
+            var type = trinket.getTrinketType(item);
+            for (int i = 0; i < getInventorySize(); i++) {
+                if (inventory[i] != null) continue;
+                if (ACCEPTED_TYPES[i] == type) {
+                    setInventoryItem(i, item.copy());
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public void tickTrinkets(PlayerBase player) {
+        for (int i = 0; i < inventory.length; ++i) {
+            if (inventory[i] == null) continue;
+            ((Trinket) inventory[i].getType()).tickTrinket(player.level, player, inventory[i], i);
+        }
     }
 }

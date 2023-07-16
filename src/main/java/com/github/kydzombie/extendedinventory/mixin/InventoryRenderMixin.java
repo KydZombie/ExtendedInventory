@@ -11,7 +11,6 @@ import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import org.spongepowered.asm.mixin.injection.callback.LocalCapture;
 
 @Mixin(PlayerInventory.class)
 public abstract class InventoryRenderMixin extends ContainerBase {
@@ -35,8 +34,7 @@ public abstract class InventoryRenderMixin extends ContainerBase {
                     ordinal = 0,
                     shift = At.Shift.BY,
                     by = 1
-            ),
-            locals = LocalCapture.CAPTURE_FAILHARD
+            )
     )
     private void addButton(float f, CallbackInfo ci) {
         int textureId = minecraft.textureManager.getTextureId("/assets/extendedinventory/stationapi/gui/trinket_ui.png");

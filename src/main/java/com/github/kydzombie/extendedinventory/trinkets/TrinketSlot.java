@@ -8,19 +8,22 @@ import net.minecraft.item.ItemInstance;
 
 public class TrinketSlot extends Slot {
     private final TrinketType[] acceptedTypes;
-    public TrinketSlot(InventoryBase inventory, TrinketType[] acceptedTypes, int i, int x, int y) {
-        super(inventory, i, x, y);
+    public TrinketSlot(TrinketInventory inventory, TrinketType[] acceptedTypes, int slot, int x, int y) {
+        super(inventory, slot, x, y);
         this.acceptedTypes = acceptedTypes;
     }
-    public TrinketSlot(InventoryBase inventory, TrinketType acceptedType, int i, int x, int y) {
-        this(inventory, new TrinketType[]{acceptedType}, i, x, y);
+    public TrinketSlot(TrinketInventory inventory, TrinketType acceptedType, int slot, int x, int y) {
+        this(inventory, new TrinketType[]{acceptedType}, slot, x, y);
+    }
+    public TrinketSlot(TrinketInventory inventory, int slot, int x, int y) {
+        this(inventory, new TrinketType[]{inventory.getAcceptedType(slot)}, slot, x, y);
     }
 
     @Override
     public boolean canInsert(ItemInstance itemInstance) {
         if (itemInstance != null && itemInstance.getType() instanceof Trinket trinket) {
             for (TrinketType acceptedType : acceptedTypes) {
-                if (acceptedType == trinket.getTrinketType()) return true;
+                if (acceptedType == trinket.getTrinketType(itemInstance)) return true;
             }
         }
         return false;
