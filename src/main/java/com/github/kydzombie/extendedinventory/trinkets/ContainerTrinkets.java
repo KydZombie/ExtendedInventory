@@ -1,11 +1,16 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
 import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.container.slot.Slot;
 import net.minecraft.entity.player.PlayerBase;
 
 public class ContainerTrinkets extends ContainerBase {
+    private static final int SLOT_START_X = 80;
+    private static final int SLOT_START_Y = 8;
+    private static final int MAX_SLOTS_Y = 4;
+
     public ContainerTrinkets(PlayerBase player) {
         // Player Inventory
         for(int row = 0; row < 3; ++row) {
@@ -20,10 +25,16 @@ public class ContainerTrinkets extends ContainerBase {
         TrinketInventory trinketInventory = ExtendedInventoryUtil.getTrinketInventory(player);
 
         // Trinket Inventory
-        addSlot(new TrinketSlot(trinketInventory, 0, 80, 8));
-        addSlot(new TrinketSlot(trinketInventory, 1, 80, 8 + 18));
-        addSlot(new TrinketSlot(trinketInventory, 2, 80, 8 + 18 + 18));
-        addSlot(new TrinketSlot(trinketInventory, 3, 80, 8 + 18 + 18 + 18));
+        var slotX = 0;
+        var slotY = 0;
+        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
+            addSlot(new TrinketSlot(trinketInventory, i, SLOT_START_X + (slotX * 18), SLOT_START_Y + (slotY * 18)));
+            slotY++;
+            if (slotY >= MAX_SLOTS_Y) {
+                slotX++;
+                slotY = 0;
+            }
+        }
     }
     @Override
     public boolean canUse(PlayerBase arg) {

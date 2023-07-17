@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class TrinketInventory implements InventoryBase {
     private final PlayerBase player;
-    private final ItemInstance[] inventory = new ItemInstance[4];
+    private final ItemInstance[] inventory = new ItemInstance[ExtendedInventoryConfig.getSlotCount()];
 
     public TrinketInventory(PlayerBase player) {
         this.player = player;
@@ -19,7 +19,7 @@ public class TrinketInventory implements InventoryBase {
 
     @Override
     public int getInventorySize() {
-        return 4;
+        return inventory.length;
     }
 
     @Override
@@ -81,8 +81,8 @@ public class TrinketInventory implements InventoryBase {
             for (TrinketType type : types) {
                 for (int i = 0; i < getInventorySize(); i++) {
                     if (inventory[i] != null) continue;
-                    // If it reaches charm in the list, it should give up on placing it by preference.
-                    if (type == TrinketType.CHARM || Arrays.stream(getAcceptedTypes(i)).toList().contains(type)) {
+                    // If it reaches a charm and there isn't a dedicated charm slot, let it go anywhere.
+                    if ((!hasAvailableCharmSlot() && type == TrinketType.CHARM) || Arrays.stream(getAcceptedTypes(i)).toList().contains(type)) {
                         var clonedItem = item.copy();
                         setInventoryItem(i, clonedItem);
                         return true;
@@ -90,6 +90,16 @@ public class TrinketInventory implements InventoryBase {
                 }
             }
 
+        }
+        return false;
+    }
+
+    private boolean hasAvailableCharmSlot() {
+        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
+            var acceptedTypes = ExtendedInventoryConfig.getAcceptedTypes(i);
+            if (Arrays.stream(acceptedTypes).toList().contains(TrinketType.CHARM)) {
+                if (getInventoryItem(i) == null) return true;
+            }
         }
         return false;
     }

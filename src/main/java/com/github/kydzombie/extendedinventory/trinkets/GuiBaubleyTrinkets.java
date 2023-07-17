@@ -1,5 +1,7 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.client.gui.screen.container.PlayerInventory;
 import net.minecraft.client.render.RenderHelper;
@@ -8,14 +10,19 @@ import net.minecraft.entity.player.PlayerBase;
 import org.lwjgl.opengl.GL11;
 import org.spongepowered.asm.mixin.Unique;
 
-public class GuiTrinkets extends ContainerBase {
+public class GuiBaubleyTrinkets extends ContainerBase {
     private float mouseX;
     private float mouseY;
 
     private static final int UNSELECTED_X = 176;
     private static final int SELECTED_X = UNSELECTED_X + 16;
 
-    public GuiTrinkets(PlayerBase player) {
+    private static final int SLOT_UV_Y = 166;
+    private static final int SLOT_START_X = 79;
+    private static final int SLOT_START_Y = 7;
+    private static final int MAX_SLOTS_Y = 4;
+
+    public GuiBaubleyTrinkets(PlayerBase player) {
         super(new ContainerTrinkets(player));
     }
 
@@ -39,6 +46,22 @@ public class GuiTrinkets extends ContainerBase {
         int buttonY = y + 8;
         blit(buttonX, buttonY, isHovering(buttonX, buttonY) ? SELECTED_X : UNSELECTED_X, 0, 16, 16);
         // Stop render button
+
+        // Render slots
+        var slotX = 0;
+        var slotY = 0;
+        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
+            var primaryType = ExtendedInventoryConfig.getAcceptedTypes(i)[0];
+            var textureXOffset = primaryType.ordinal() * 18;
+
+            blit(x + SLOT_START_X + (slotX * 18), y + SLOT_START_Y + (slotY * 18), textureXOffset, SLOT_UV_Y, 18, 18);
+            slotY++;
+            if (slotY >= MAX_SLOTS_Y) {
+                slotX++;
+                slotY = 0;
+            }
+        }
+        // Stop render slots
 
         GL11.glEnable(32826);
         GL11.glEnable(2903);

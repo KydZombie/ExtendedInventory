@@ -1,6 +1,6 @@
 package com.github.kydzombie.extendedinventory;
 
-import com.github.kydzombie.extendedinventory.trinkets.GuiTrinkets;
+import com.github.kydzombie.extendedinventory.trinkets.GuiBaubleyTrinkets;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.client.gui.screen.ScreenBase;
 import net.minecraft.client.options.KeyBinding;
@@ -23,7 +23,7 @@ public class ExtendedInventoryClient {
     }
 
     public ScreenBase openTrinkets(PlayerBase player, InventoryBase inventoryBase) {
-        return new GuiTrinkets(player);
+        return new GuiBaubleyTrinkets(player);
     }
 
     @EventListener
