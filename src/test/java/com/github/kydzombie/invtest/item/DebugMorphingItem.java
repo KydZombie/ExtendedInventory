@@ -1,5 +1,7 @@
-package com.github.kydzombie.extendedinventory.item;
+package com.github.kydzombie.invtest.item;
 
+import com.github.kydzombie.extendedinventory.item.TemplateTrinket;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
@@ -13,12 +15,12 @@ public class DebugMorphingItem extends TemplateTrinket {
     @Override
     public void onTrinketEquipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {
         System.out.println("Morphed into " + TrinketType.values()[trinketSlot].name());
-        item.getStationNBT().put("extendedinventory:placedInSlotOfType", TrinketType.values()[trinketSlot].ordinal());
+        item.getStationNBT().put("invtest:placedInSlotOfType", TrinketType.values()[trinketSlot].ordinal());
     }
 
     @Override
     public void onTrinketUnequipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {
         System.out.println("Demorphed");
-        item.getStationNBT().put("extendedinventory:placedInSlotOfType", 0);
+        item.getStationNBT().put("invtest:placedInSlotOfType", 0);
     }
 }

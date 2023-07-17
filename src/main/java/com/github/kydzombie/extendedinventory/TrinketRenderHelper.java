@@ -2,8 +2,6 @@ package com.github.kydzombie.extendedinventory;
 
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.render.entity.EntityRenderDispatcher;
-import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.PlayerRenderer;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.util.maths.MathHelper;

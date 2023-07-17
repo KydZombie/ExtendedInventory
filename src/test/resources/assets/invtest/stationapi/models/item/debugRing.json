@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "extendedinventory:item/debugRing"
+    "layer0": "invtest:item/debugRing"
   }
 }

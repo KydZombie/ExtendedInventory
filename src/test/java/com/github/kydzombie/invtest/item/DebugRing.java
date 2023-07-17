@@ -1,5 +1,7 @@
-package com.github.kydzombie.extendedinventory.item;
+package com.github.kydzombie.invtest.item;
 
+import com.github.kydzombie.extendedinventory.item.TemplateTrinket;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;

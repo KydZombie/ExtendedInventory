@@ -1,6 +1,8 @@
-package com.github.kydzombie.extendedinventory.item;
+package com.github.kydzombie.invtest.item;
 
 import com.github.kydzombie.extendedinventory.TrinketRenderHelper;
+import com.github.kydzombie.extendedinventory.item.TemplateTrinket;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.client.render.entity.PlayerRenderer;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
@@ -13,6 +15,6 @@ public class DebugGlove extends TemplateTrinket {
 
     @Override
     public void renderFirstPerson(PlayerBase player, PlayerRenderer renderer, ItemInstance item, float field_2404, float field_2403, float f, int slot) {
-        TrinketRenderHelper.renderGlove(player, renderer, "/assets/extendedinventory/stationapi/textures/misc/test_glove.png", field_2404, field_2403, f);
+        TrinketRenderHelper.renderGlove(player, renderer, "/assets/invtest/stationapi/textures/misc/test_glove.png", field_2404, field_2403, f);
     }
 }

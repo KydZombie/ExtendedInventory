@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "invtest:item/debugMorphingItem"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "invtest:currentSlot": 0.5
+      },
+      "model": "invtest:item/debugRing"
+    },
+    {
+      "predicate": {
+        "invtest:currentSlot": 1
+      },
+      "model": "invtest:item/debugGlove"
+    }
+  ]
+}

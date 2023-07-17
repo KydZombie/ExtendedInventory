@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "id": "invtest",
+  "version": "ersion? yes.",
+
+  "name": "Extended Inventory Test Mod",
+  "description": "A mod for testing all of the features of Extended Inventory.",
+  "authors": [
+    "KydZombie"
+  ],
+  "contact": {
+    "homepage": "https://glass-launcher.net/",
+    "sources": "https://github.com/KydZombie/ExtendedInventory"
+  },
+
+  "license": "CC0-1.0",
+  "icon": "assets/invtest/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "stationapi:event_bus": [
+      "com.github.kydzombie.invtest.InvTest"
+    ],
+    "stationapi:event_bus_client": [
+      "com.github.kydzombie.invtest.InvTestClient"
+    ],
+    "stationapi:event_bus_server": [
+    ]
+  },
+  "depends": {
+    "minecraft": "1.0.0-beta.7.3"
+  }
+}

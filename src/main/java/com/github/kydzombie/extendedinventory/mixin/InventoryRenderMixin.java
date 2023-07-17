@@ -1,10 +1,8 @@
 package com.github.kydzombie.extendedinventory.mixin;
 
 import com.github.kydzombie.extendedinventory.ExtendedInventory;
-import com.github.kydzombie.extendedinventory.trinkets.ContainerTrinkets;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.client.gui.screen.container.PlayerInventory;
-import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.packet.Message;
 import net.modificationstation.stationapi.api.packet.PacketHelper;
 import org.spongepowered.asm.mixin.Mixin;
