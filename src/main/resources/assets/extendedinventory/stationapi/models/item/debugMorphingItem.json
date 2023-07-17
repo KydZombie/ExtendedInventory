@@ -1,0 +1,20 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "extendedinventory:item/debugMorphingItem"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "extendedinventory:currentSlot": 0.5
+      },
+      "model": "extendedinventory:item/debugRing"
+    },
+    {
+      "predicate": {
+        "extendedinventory:currentSlot": 1
+      },
+      "model": "extendedinventory:item/debugGlove"
+    }
+  ]
+}

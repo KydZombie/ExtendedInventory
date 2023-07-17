@@ -1,7 +1,6 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
-import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
-import com.github.kydzombie.extendedinventory.item.TrinketType;
+import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.client.gui.screen.container.PlayerInventory;
 import net.minecraft.client.render.RenderHelper;
@@ -50,8 +49,8 @@ public class GuiBaubleyTrinkets extends ContainerBase {
         // Render slots
         var slotX = 0;
         var slotY = 0;
-        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
-            var primaryType = ExtendedInventoryConfig.getAcceptedTypes(i)[0];
+        for (int i = 0; i < ExtendedInventoryUtil.getSlotCount(); i++) {
+            var primaryType = ExtendedInventoryUtil.getAcceptedTypes(i)[0];
             var textureXOffset = primaryType.ordinal() * 18;
 
             blit(x + SLOT_START_X + (slotX * 18), y + SLOT_START_Y + (slotY * 18), textureXOffset, SLOT_UV_Y, 18, 18);

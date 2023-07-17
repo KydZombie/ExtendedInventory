@@ -11,22 +11,20 @@ public class ExtendedInventoryConfig {
             new TrinketType[] { TrinketType.CHARM }
     };
 
-    public static int getSlotCount() {
-        return acceptedTypes.length;
-    }
-
     public static TrinketType[][] getAllAcceptedTypes() {
         return acceptedTypes;
-    }
-
-    public static TrinketType[] getAcceptedTypes(int slot) {
-        return acceptedTypes[slot];
     }
 
     private static UIStyle style = UIStyle.BAUBLEY;
 
     public static UIStyle getStyle() {
         return style;
+    }
+
+    private static int trinketTextUpdateTime = 1500;
+
+    public static int getTrinketTextUpdateTime() {
+        return trinketTextUpdateTime;
     }
 }
 

@@ -1,6 +1,5 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
-import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
 import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.container.slot.Slot;
@@ -27,7 +26,7 @@ public class ContainerTrinkets extends ContainerBase {
         // Trinket Inventory
         var slotX = 0;
         var slotY = 0;
-        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
+        for (int i = 0; i < ExtendedInventoryUtil.getSlotCount(); i++) {
             addSlot(new TrinketSlot(trinketInventory, i, SLOT_START_X + (slotX * 18), SLOT_START_Y + (slotY * 18)));
             slotY++;
             if (slotY >= MAX_SLOTS_Y) {
@@ -36,6 +35,7 @@ public class ContainerTrinkets extends ContainerBase {
             }
         }
     }
+
     @Override
     public boolean canUse(PlayerBase arg) {
         return true;

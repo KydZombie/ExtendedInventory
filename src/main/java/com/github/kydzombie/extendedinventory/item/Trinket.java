@@ -1,16 +1,26 @@
 package com.github.kydzombie.extendedinventory.item;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
 import net.minecraft.client.render.entity.PlayerRenderer;
+import net.minecraft.client.resource.language.TranslationStorage;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
+
+import java.util.Arrays;
 
 public interface Trinket {
     TrinketType[] getTrinketTypes(ItemInstance item);
 
     // TODO Add translations
     default String getTrinketEquipText(ItemInstance item) {
-        return "Equip in the " + getTrinketTypes(item)[0].toString() + " slot.";
+        var types = getTrinketTypes(item);
+        if (Arrays.stream(types).anyMatch(type -> type == TrinketType.CHARM)) {
+            return TranslationStorage.getInstance().translate("tooltip.extendedinventory:equipCharm");
+        }
+        int index = (int) ((System.currentTimeMillis() / ExtendedInventoryConfig.getTrinketTextUpdateTime()) % types.length);
+        var slotName = types[index].name();
+        return String.format(TranslationStorage.getInstance().translate("tooltip.extendedinventory:equipGeneric"), slotName);
     }
 
     default void tickTrinket(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {}

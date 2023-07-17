@@ -24,6 +24,7 @@ public class ExtendedInventory {
     public static ItemBase DEBUG_BELT;
     public static ItemBase DEBUG_CHARM;
     public static ItemBase DEBUG_GLOVE;
+    public static ItemBase DEBUG_MORPHING_ITEM;
 
     @EventListener
     public void registerTestItems(ItemRegistryEvent event) {
@@ -33,6 +34,7 @@ public class ExtendedInventory {
         DEBUG_BELT = new DebugBelt(MOD_ID.id("debugBelt"));
         DEBUG_CHARM = new DebugCharm(MOD_ID.id("debugCharm"));
         DEBUG_GLOVE = new DebugGlove(MOD_ID.id("debugGlove"));
+        DEBUG_MORPHING_ITEM = new DebugMorphingItem(MOD_ID.id("debugMorphingItem"));
     }
 
     @EventListener

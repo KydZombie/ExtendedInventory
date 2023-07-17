@@ -1,6 +1,6 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
-import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
+import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import com.github.kydzombie.extendedinventory.item.Trinket;
 import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.entity.player.PlayerBase;
@@ -11,7 +11,7 @@ import java.util.Arrays;
 
 public class TrinketInventory implements InventoryBase {
     private final PlayerBase player;
-    private final ItemInstance[] inventory = new ItemInstance[ExtendedInventoryConfig.getSlotCount()];
+    private final ItemInstance[] inventory = new ItemInstance[ExtendedInventoryUtil.getSlotCount()];
 
     public TrinketInventory() {
         this.player = null;
@@ -75,7 +75,7 @@ public class TrinketInventory implements InventoryBase {
     }
 
     public TrinketType[] getAcceptedTypes(int slot) {
-        return ExtendedInventoryConfig.getAcceptedTypes(slot);
+        return ExtendedInventoryUtil.getAcceptedTypes(slot);
     }
 
     public boolean attemptInsert(ItemInstance item) {
@@ -99,8 +99,8 @@ public class TrinketInventory implements InventoryBase {
     }
 
     private boolean hasAvailableCharmSlot() {
-        for (int i = 0; i < ExtendedInventoryConfig.getSlotCount(); i++) {
-            var acceptedTypes = ExtendedInventoryConfig.getAcceptedTypes(i);
+        for (int i = 0; i < ExtendedInventoryUtil.getSlotCount(); i++) {
+            var acceptedTypes = ExtendedInventoryUtil.getAcceptedTypes(i);
             if (Arrays.stream(acceptedTypes).toList().contains(TrinketType.CHARM)) {
                 if (getInventoryItem(i) == null) return true;
             }
