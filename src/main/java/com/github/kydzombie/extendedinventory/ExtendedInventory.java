@@ -1,12 +1,15 @@
 package com.github.kydzombie.extendedinventory;
 
 import com.github.kydzombie.extendedinventory.item.*;
+import com.github.kydzombie.extendedinventory.trinkets.ContainerTrinkets;
+import com.github.kydzombie.extendedinventory.trinkets.TrinketInventory;
 import com.github.kydzombie.extendedinventory.trinkets.TrinketPlayerHandler;
 import net.mine_diver.unsafeevents.listener.EventListener;
 import net.minecraft.item.ItemBase;
 import net.modificationstation.stationapi.api.event.entity.player.PlayerEvent;
 import net.modificationstation.stationapi.api.event.registry.ItemRegistryEvent;
 import net.modificationstation.stationapi.api.event.registry.MessageListenerRegistryEvent;
+import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
 import net.modificationstation.stationapi.api.mod.entrypoint.Entrypoint;
 import net.modificationstation.stationapi.api.registry.ModID;
 import net.modificationstation.stationapi.api.registry.Registry;
@@ -43,5 +46,14 @@ public class ExtendedInventory {
             var trinketHandler = ExtendedInventoryUtil.getTrinketHandler(player);
             trinketHandler.getTrinket(DEBUG_BELT).ifPresent(trinket -> player.damage(player, 5));
         });
+        Registry.register(event.registry, MOD_ID.id("openTrinketsButton"), (player, message) -> {
+            GuiHelper.openGUI(
+                    player,
+                    ExtendedInventory.MOD_ID.id("openTrinkets"),
+                    new TrinketInventory(player),
+                    new ContainerTrinkets(player)
+            );
+        });
+
     }
 }

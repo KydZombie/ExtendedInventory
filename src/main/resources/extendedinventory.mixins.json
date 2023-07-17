@@ -10,6 +10,7 @@
   "server": [
   ],
   "client": [
+    "HandRenderMixin",
     "InventoryRenderMixin",
     "PlayerRendererMixin"
   ],

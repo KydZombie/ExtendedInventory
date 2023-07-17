@@ -1,7 +1,7 @@
 package com.github.kydzombie.extendedinventory.mixin;
 
 import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
-import com.github.kydzombie.extendedinventory.item.HasPlayerRenderer;
+import com.github.kydzombie.extendedinventory.item.Trinket;
 import net.minecraft.client.render.entity.PlayerRenderer;
 import net.minecraft.entity.EntityBase;
 import net.minecraft.entity.player.PlayerBase;
@@ -23,8 +23,8 @@ public class PlayerRendererMixin {
         var trinketInventory = ExtendedInventoryUtil.getTrinketInventory(player);
         for (int i = 0; i < trinketInventory.getInventorySize(); i++) {
             var item = trinketInventory.getInventoryItem(i);
-            if (item == null || !(item.getType() instanceof HasPlayerRenderer trinketRenderer)) continue;
-            trinketRenderer.renderWhileEquipped(player, renderer, item, i);
+            if (item == null || !(item.getType() instanceof Trinket trinket)) continue;
+            trinket.renderThirdPerson(player, renderer, item, i);
         }
     }
 }

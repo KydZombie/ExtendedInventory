@@ -5,6 +5,8 @@ import com.github.kydzombie.extendedinventory.trinkets.ContainerTrinkets;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.client.gui.screen.container.PlayerInventory;
 import net.modificationstation.stationapi.api.gui.screen.container.GuiHelper;
+import net.modificationstation.stationapi.api.packet.Message;
+import net.modificationstation.stationapi.api.packet.PacketHelper;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -54,12 +56,7 @@ public abstract class InventoryRenderMixin extends ContainerBase {
         int x = ((width - containerWidth) / 2) + 62;
         int y = ((height - containerHeight) / 2) + 8;
         if (isHovering(x, y)) {
-            GuiHelper.openGUI(
-                    minecraft.player,
-                    ExtendedInventory.MOD_ID.id("openTrinkets"),
-                    null,
-                    new ContainerTrinkets(minecraft.player)
-                    );
+            PacketHelper.send(new Message(ExtendedInventory.MOD_ID.id("openTrinketsButton")));
         } else {
             super.mouseClicked(i, j, k);
         }

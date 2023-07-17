@@ -13,6 +13,10 @@ public class TrinketInventory implements InventoryBase {
     private final PlayerBase player;
     private final ItemInstance[] inventory = new ItemInstance[ExtendedInventoryConfig.getSlotCount()];
 
+    public TrinketInventory() {
+        this.player = null;
+    }
+
     public TrinketInventory(PlayerBase player) {
         this.player = player;
     }
