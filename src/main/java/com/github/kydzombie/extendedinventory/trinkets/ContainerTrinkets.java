@@ -1,9 +1,9 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import net.minecraft.container.ContainerBase;
 import net.minecraft.container.slot.Slot;
 import net.minecraft.entity.player.PlayerBase;
-import net.modificationstation.stationapi.api.entity.player.PlayerHandlerContainer;
 
 public class ContainerTrinkets extends ContainerBase {
     public ContainerTrinkets(PlayerBase player) {
@@ -17,7 +17,7 @@ public class ContainerTrinkets extends ContainerBase {
             addSlot(new Slot(player.inventory, i, 8 + i * 18, 142));
         }
 
-        TrinketInventory trinketInventory = ((TrinketPlayerHandler) ((PlayerHandlerContainer) player).getPlayerHandlers().stream().filter(item -> item instanceof TrinketPlayerHandler).toArray()[0]).inventory;
+        TrinketInventory trinketInventory = ExtendedInventoryUtil.getTrinketInventory(player);
 
         // Trinket Inventory
         addSlot(new TrinketSlot(trinketInventory, 0, 80, 8));

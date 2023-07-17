@@ -1,21 +1,16 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
 import com.github.kydzombie.extendedinventory.item.Trinket;
 import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;
 
+import java.util.Arrays;
+
 public class TrinketInventory implements InventoryBase {
     private final ItemInstance[] inventory = new ItemInstance[4];
-
-    // TODO config for these
-    private static final TrinketType[] ACCEPTED_TYPES = new TrinketType[] {
-            TrinketType.NECKLACE,
-            TrinketType.RING,
-            TrinketType.RING,
-            TrinketType.BELT
-    };
 
     @Override
     public int getInventorySize() {
@@ -62,8 +57,8 @@ public class TrinketInventory implements InventoryBase {
         return true;
     }
 
-    public TrinketType getAcceptedType(int slot) {
-        return ACCEPTED_TYPES[slot];
+    public TrinketType[] getAcceptedTypes(int slot) {
+        return ExtendedInventoryConfig.getAcceptedTypes(slot);
     }
 
     public boolean attemptInsert(ItemInstance item) {
@@ -72,7 +67,7 @@ public class TrinketInventory implements InventoryBase {
             var type = trinket.getTrinketType(item);
             for (int i = 0; i < getInventorySize(); i++) {
                 if (inventory[i] != null) continue;
-                if (ACCEPTED_TYPES[i] == type) {
+                if (Arrays.stream(getAcceptedTypes(i)).toList().contains(type)) {
                     setInventoryItem(i, item.copy());
                     return true;
                 }

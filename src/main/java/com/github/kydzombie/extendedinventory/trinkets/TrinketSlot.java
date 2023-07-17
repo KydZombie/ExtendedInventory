@@ -3,7 +3,6 @@ package com.github.kydzombie.extendedinventory.trinkets;
 import com.github.kydzombie.extendedinventory.item.Trinket;
 import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.container.slot.Slot;
-import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;
 
 public class TrinketSlot extends Slot {
@@ -12,11 +11,8 @@ public class TrinketSlot extends Slot {
         super(inventory, slot, x, y);
         this.acceptedTypes = acceptedTypes;
     }
-    public TrinketSlot(TrinketInventory inventory, TrinketType acceptedType, int slot, int x, int y) {
-        this(inventory, new TrinketType[]{acceptedType}, slot, x, y);
-    }
     public TrinketSlot(TrinketInventory inventory, int slot, int x, int y) {
-        this(inventory, new TrinketType[]{inventory.getAcceptedType(slot)}, slot, x, y);
+        this(inventory, inventory.getAcceptedTypes(slot), slot, x, y);
     }
 
     @Override

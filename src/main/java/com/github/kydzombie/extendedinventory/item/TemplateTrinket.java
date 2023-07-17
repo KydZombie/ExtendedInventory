@@ -1,12 +1,10 @@
 package com.github.kydzombie.extendedinventory.item;
 
-import com.github.kydzombie.extendedinventory.trinkets.TrinketInventory;
-import com.github.kydzombie.extendedinventory.trinkets.TrinketPlayerHandler;
+import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.client.gui.CustomTooltipProvider;
-import net.modificationstation.stationapi.api.entity.player.PlayerHandlerContainer;
 import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
 
@@ -27,8 +25,7 @@ public class TemplateTrinket extends TemplateItemBase implements Trinket, Custom
 
     @Override
     public ItemInstance use(ItemInstance itemInstance, Level level, PlayerBase player) {
-        var trinketInventory = ((TrinketPlayerHandler) ((PlayerHandlerContainer) player).getPlayerHandlers().stream().filter(item -> item instanceof TrinketPlayerHandler).toArray()[0]).inventory;
-        if (trinketInventory.attemptInsert(itemInstance)) {
+        if (ExtendedInventoryUtil.getTrinketInventory(player).attemptInsert(itemInstance)) {
             itemInstance.count--;
             return itemInstance;
         }

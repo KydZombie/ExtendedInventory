@@ -34,9 +34,11 @@ public class GuiTrinkets extends ContainerBase {
         int y = (this.height - this.containerHeight) / 2;
         this.blit(x, y, 0, 0, this.containerWidth, this.containerHeight);
 
+        // Render button
         int buttonX = x + 62;
         int buttonY = y + 8;
         blit(buttonX, buttonY, isHovering(buttonX, buttonY) ? SELECTED_X : UNSELECTED_X, 0, 16, 16);
+        // Stop render button
 
         GL11.glEnable(32826);
         GL11.glEnable(2903);
