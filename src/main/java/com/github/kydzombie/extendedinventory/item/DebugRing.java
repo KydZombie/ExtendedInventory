@@ -1,11 +1,12 @@
 package com.github.kydzombie.extendedinventory.item;
 
+import net.minecraft.client.render.entity.PlayerRenderer;
 import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.level.Level;
 import net.modificationstation.stationapi.api.registry.Identifier;
 
-public class DebugRing extends TemplateTrinket {
+public class DebugRing extends TemplateTrinket implements HasPlayerRenderer {
     private static final byte CHARGE_TIME = 40;
     public DebugRing(Identifier identifier) {
         super(identifier, TrinketType.RING);
@@ -21,5 +22,11 @@ public class DebugRing extends TemplateTrinket {
             charge++;
         }
         item.getStationNBT().put("charge", charge);
+    }
+
+
+    @Override
+    public void renderWhileEquipped(PlayerBase player, PlayerRenderer renderer, ItemInstance item, int slot) {
+
     }
 }
