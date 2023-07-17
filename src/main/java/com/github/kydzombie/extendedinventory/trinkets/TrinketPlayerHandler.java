@@ -1,5 +1,8 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import net.minecraft.entity.EntityBase;
+import net.minecraft.entity.Item;
+import net.minecraft.entity.player.PlayerBase;
 import net.minecraft.item.ItemBase;
 import net.minecraft.item.ItemInstance;
 import net.minecraft.util.io.CompoundTag;
@@ -9,7 +12,13 @@ import net.modificationstation.stationapi.api.entity.player.PlayerHandler;
 import java.util.Optional;
 
 public class TrinketPlayerHandler implements PlayerHandler {
-    public TrinketInventory inventory = new TrinketInventory();
+    public PlayerBase player;
+    public TrinketInventory inventory;
+
+    public TrinketPlayerHandler(PlayerBase player) {
+        this.player = player;
+        inventory = new TrinketInventory(player);
+    }
 
     @Override
     public boolean readEntityBaseFromNBT(CompoundTag tag) {

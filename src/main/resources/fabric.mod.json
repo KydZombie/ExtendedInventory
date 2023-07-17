@@ -22,6 +22,7 @@
       "com.github.kydzombie.extendedinventory.ExtendedInventory"
     ],
     "stationapi:event_bus_client": [
+      "com.github.kydzombie.extendedinventory.ExtendedInventoryClient"
     ],
     "stationapi:event_bus_server": [
     ]

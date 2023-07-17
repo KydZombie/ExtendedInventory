@@ -9,18 +9,29 @@ import net.modificationstation.stationapi.api.registry.Identifier;
 import net.modificationstation.stationapi.api.template.item.TemplateItemBase;
 
 public class TemplateTrinket extends TemplateItemBase implements Trinket, CustomTooltipProvider {
-    TrinketType type;
-    public TemplateTrinket(Identifier identifier, TrinketType trinketType) {
+    TrinketType[] types;
+
+    public TemplateTrinket(Identifier identifier, TrinketType... trinketTypes) {
         super(identifier);
         setMaxStackSize(1);
         setTranslationKey(identifier.toString());
 
-        type = trinketType;
+        types = trinketTypes;
+    }
+
+    @Override
+    public boolean hasMultipleTrinketTypes(ItemInstance item) {
+        return types.length > 1;
+    }
+
+    @Override
+    public TrinketType[] getTrinketTypes(ItemInstance item) {
+        return Trinket.super.getTrinketTypes(item);
     }
 
     @Override
     public TrinketType getTrinketType(ItemInstance item) {
-        return type;
+        return types[0];
     }
 
     @Override

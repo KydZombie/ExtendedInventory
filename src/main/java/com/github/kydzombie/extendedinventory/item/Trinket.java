@@ -14,11 +14,12 @@ public interface Trinket {
     default boolean hasMultipleTrinketTypes(ItemInstance item) { return false; }
     default TrinketType[] getTrinketTypes(ItemInstance item) { return new TrinketType[] { getTrinketType(item) }; }
 
-
     // TODO Add translations
     default String getTrinketEquipText(ItemInstance item) {
         return "Equip in the " + getTrinketType(item).toString() + " slot.";
     }
 
     default void tickTrinket(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {}
+    default void onTrinketEquipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {}
+    default void onTrinketUnequipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {}
 }

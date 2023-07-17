@@ -4,6 +4,7 @@
   "package": "com.github.kydzombie.extendedinventory.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "PlayerBaseMixin",
     "PlayerInventoryMixin"
   ],
   "server": [
