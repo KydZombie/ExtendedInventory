@@ -1,11 +1,10 @@
 package com.github.kydzombie.extendedinventory.item;
 
 public enum TrinketType {
-    HAT,
-    NECKLACE,
+    NECK,
     GLOVE,
     RING,
-    SHOULDER,
+    WRIST,
     BACK,
     CAPE,
     BELT,
