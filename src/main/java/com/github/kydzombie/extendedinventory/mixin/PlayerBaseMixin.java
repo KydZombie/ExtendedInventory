@@ -20,7 +20,7 @@ public abstract class PlayerBaseMixin {
         var inventory = ExtendedInventoryUtil.getTrinketInventory((PlayerBase) (Object) this);
         for (int i = 0; i < inventory.getInventorySize(); i++) {
             if (inventory.getInventoryItem(i) == null) continue;
-            this.dropItem(inventory.getInventoryItem(i), true);
+            dropItem(inventory.getInventoryItem(i), true);
         }
     }
 
