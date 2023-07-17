@@ -12,13 +12,13 @@ public class DebugBelt extends TemplateTrinket {
 
     @Override
     public void onTrinketEquipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {
-        System.out.println("Shoulder bag has been equipped.");
+        System.out.println("Debug belt has been equipped.");
         super.onTrinketEquipped(level, player, item, trinketSlot);
     }
 
     @Override
     public void onTrinketUnequipped(Level level, PlayerBase player, ItemInstance item, int trinketSlot) {
-        System.out.println("Shoulder bag has been unequipped.");
+        System.out.println("Debug belt has been unequipped.");
         super.onTrinketUnequipped(level, player, item, trinketSlot);
     }
 }

@@ -8,7 +8,6 @@ import net.minecraft.inventory.InventoryBase;
 import net.minecraft.item.ItemInstance;
 
 import java.util.Arrays;
-import java.util.Optional;
 
 public class TrinketInventory implements InventoryBase {
     private final PlayerBase player;
@@ -78,15 +77,19 @@ public class TrinketInventory implements InventoryBase {
     public boolean attemptInsert(ItemInstance item) {
         if (item == null) return false;
         if (item.getType() instanceof Trinket trinket) {
-            var type = trinket.getTrinketType(item);
-            for (int i = 0; i < getInventorySize(); i++) {
-                if (inventory[i] != null) continue;
-                if (Arrays.stream(getAcceptedTypes(i)).toList().contains(type)) {
-                    var clonedItem = item.copy();
-                    setInventoryItem(i, clonedItem);
-                    return true;
+            var types = trinket.getTrinketTypes(item);
+            for (TrinketType type : types) {
+                for (int i = 0; i < getInventorySize(); i++) {
+                    if (inventory[i] != null) continue;
+                    // If it reaches charm in the list, it should give up on placing it by preference.
+                    if (type == TrinketType.CHARM || Arrays.stream(getAcceptedTypes(i)).toList().contains(type)) {
+                        var clonedItem = item.copy();
+                        setInventoryItem(i, clonedItem);
+                        return true;
+                    }
                 }
             }
+
         }
         return false;
     }

@@ -1,8 +1,6 @@
 package com.github.kydzombie.extendedinventory;
 
-import com.github.kydzombie.extendedinventory.item.DebugNecklace;
-import com.github.kydzombie.extendedinventory.item.DebugRing;
-import com.github.kydzombie.extendedinventory.item.DebugBelt;
+import com.github.kydzombie.extendedinventory.item.*;
 import com.github.kydzombie.extendedinventory.trinkets.GuiTrinkets;
 import com.github.kydzombie.extendedinventory.trinkets.TrinketPlayerHandler;
 import net.mine_diver.unsafeevents.listener.EventListener;
@@ -27,6 +25,8 @@ public class ExtendedInventory {
     public static ItemBase DEBUG_RING;
     public static ItemBase DEBUG_NECKLACE;
     public static ItemBase DEBUG_BELT;
+    public static ItemBase DEBUG_CHARM;
+    public static ItemBase DEBUG_GLOVE;
 
     @EventListener
     public void registerTestItems(ItemRegistryEvent event) {
@@ -34,6 +34,8 @@ public class ExtendedInventory {
         DEBUG_RING = new DebugRing(MOD_ID.id("debugRing"));
         DEBUG_NECKLACE = new DebugNecklace(MOD_ID.id("debugNecklace"));
         DEBUG_BELT = new DebugBelt(MOD_ID.id("debugBelt"));
+        DEBUG_CHARM = new DebugCharm(MOD_ID.id("debugCharm"));
+        DEBUG_GLOVE = new DebugGlove(MOD_ID.id("debugGlove"));
     }
 
     @EventListener

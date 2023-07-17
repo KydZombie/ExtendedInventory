@@ -5,6 +5,8 @@ import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.container.slot.Slot;
 import net.minecraft.item.ItemInstance;
 
+import java.util.Arrays;
+
 public class TrinketSlot extends Slot {
     private final TrinketType[] acceptedTypes;
     public TrinketSlot(TrinketInventory inventory, TrinketType[] acceptedTypes, int slot, int x, int y) {
@@ -18,8 +20,11 @@ public class TrinketSlot extends Slot {
     @Override
     public boolean canInsert(ItemInstance itemInstance) {
         if (itemInstance != null && itemInstance.getType() instanceof Trinket trinket) {
+            if (Arrays.stream(trinket.getTrinketTypes(itemInstance)).anyMatch(type -> type == TrinketType.CHARM)) {
+                return true;
+            }
             for (TrinketType acceptedType : acceptedTypes) {
-                if (acceptedType == trinket.getTrinketType(itemInstance)) return true;
+                if (Arrays.stream(trinket.getTrinketTypes(itemInstance)).anyMatch(type -> type == acceptedType)) return true;
             }
         }
         return false;

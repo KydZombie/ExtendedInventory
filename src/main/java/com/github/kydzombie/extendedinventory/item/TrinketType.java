@@ -7,7 +7,8 @@ public enum TrinketType {
     RING,
     SHOULDER,
     BACK,
+    CAPE,
     BELT,
-    CHARM,
+    CHARM, // Charms can be put in any slot.
     MISC
 }

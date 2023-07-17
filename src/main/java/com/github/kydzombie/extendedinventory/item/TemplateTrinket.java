@@ -20,18 +20,8 @@ public class TemplateTrinket extends TemplateItemBase implements Trinket, Custom
     }
 
     @Override
-    public boolean hasMultipleTrinketTypes(ItemInstance item) {
-        return types.length > 1;
-    }
-
-    @Override
     public TrinketType[] getTrinketTypes(ItemInstance item) {
-        return Trinket.super.getTrinketTypes(item);
-    }
-
-    @Override
-    public TrinketType getTrinketType(ItemInstance item) {
-        return types[0];
+        return types;
     }
 
     @Override
