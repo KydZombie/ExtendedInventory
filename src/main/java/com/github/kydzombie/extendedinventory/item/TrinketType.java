@@ -5,6 +5,7 @@ public enum TrinketType {
     GLOVE,
     RING,
     WRIST,
+    SHOULDER,
     BACK,
     CAPE,
     BELT,

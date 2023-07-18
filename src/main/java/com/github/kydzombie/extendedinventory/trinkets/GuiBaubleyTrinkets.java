@@ -1,6 +1,8 @@
 package com.github.kydzombie.extendedinventory.trinkets;
 
+import com.github.kydzombie.extendedinventory.ExtendedInventoryConfig;
 import com.github.kydzombie.extendedinventory.ExtendedInventoryUtil;
+import com.github.kydzombie.extendedinventory.item.TrinketType;
 import net.minecraft.client.gui.screen.container.ContainerBase;
 import net.minecraft.client.gui.screen.container.PlayerInventory;
 import net.minecraft.client.render.RenderHelper;
@@ -50,10 +52,22 @@ public class GuiBaubleyTrinkets extends ContainerBase {
         var slotX = 0;
         var slotY = 0;
         for (int i = 0; i < ExtendedInventoryUtil.getSlotCount(); i++) {
-            var primaryType = ExtendedInventoryUtil.getAcceptedTypes(i)[0];
-            var textureXOffset = primaryType.ordinal() * 18;
+            var textureXOffset = 0;
+            var translatedSlotX = x + SLOT_START_X + (slotX * 18);
+            var translatedSlotY = y + SLOT_START_Y + (slotY * 18);
+            if (ExtendedInventoryUtil.getTrinketInventory(minecraft.player).getInventoryItem(i) == null) {
+                var acceptedTypes = ExtendedInventoryUtil.getAcceptedTypes(i);
+                TrinketType displayType;
+                if (isHovering(translatedSlotX, translatedSlotY)) {
+                    int index = (int) ((System.currentTimeMillis() / ExtendedInventoryConfig.getTrinketSlotUpdateTime()) % acceptedTypes.length);
+                    displayType = acceptedTypes[index];
+                } else {
+                    displayType = acceptedTypes[0];
+                }
+                textureXOffset = (displayType.ordinal() + 1) * 18;
+            }
 
-            blit(x + SLOT_START_X + (slotX * 18), y + SLOT_START_Y + (slotY * 18), textureXOffset, SLOT_UV_Y, 18, 18);
+            blit(translatedSlotX, translatedSlotY, textureXOffset, SLOT_UV_Y, 18, 18);
             slotY++;
             if (slotY >= MAX_SLOTS_Y) {
                 slotX++;
